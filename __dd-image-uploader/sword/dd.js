@@ -3,7 +3,7 @@
     if (typeof base.composer === "undefined") return;
 
     var speak = base.languages,
-        hasFiles = 0,
+        ok = false,
         accept = {
             'image/bmp': true,
             'image/gif': true,
@@ -20,7 +20,7 @@
         if (accept[file.type]) {
             data.append('dd_cargo', file);
             drop(file);
-            hasFiles++;
+            ok = true;
         }
         var xhr = new XMLHttpRequest();
         xhr.open('POST', DD_UPLOAD_DESTINATION);
@@ -79,9 +79,9 @@
                     });
                 }
             }
-            hasFiles = 0;
+            ok = false;
         };
-        if (hasFiles) {
+        if (ok) {
             w.setTimeout(function() {
                 xhr.send(data);
             }, 3000);
@@ -91,7 +91,7 @@
                 'area': area,
                 'progress': progress
             });
-            hasFiles = 0;
+            ok = false;
         }
     }
 

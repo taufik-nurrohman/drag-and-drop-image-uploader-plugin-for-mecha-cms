@@ -27,7 +27,7 @@ Weapon::add('SHIPMENT_REGION_BOTTOM', function() {
 Route::post(DD_UPLOAD_DESTINATION, function() use($config, $speak) {
     Guardian::checkToken(DD_UPLOAD_TOKEN);
     HTTP::mime('application/json', $config->charset);
-    File::upload($_FILES['dd_cargo'], File::path(Request::post('path', DD_UPLOAD_FOLDER)), function($name, $type, $size, $url) {
+    File::upload($_FILES['dd_cargo'], File::path(Request::post('dd_path', DD_UPLOAD_FOLDER)), function($name, $type, $size, $url) {
         echo json_encode(array(
             'name' => $name,
             'type' => $type,
