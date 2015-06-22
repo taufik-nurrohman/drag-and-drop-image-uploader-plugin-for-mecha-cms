@@ -1,0 +1,12 @@
+Title: Drag &amp; Drop Image Uploader
+Author: Taufik Nurrohman
+URL: http://latitudu.com
+Version: 1.0.0
+
+====
+
+> Image uploader in the post editor.
+
+Upload your pictures quickly and easily, directly through the post editor using AJAX uploader.
+
+*[AJAX]: Asynchronous JavaScript and XML

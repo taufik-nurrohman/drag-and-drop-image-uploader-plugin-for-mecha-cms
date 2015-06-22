@@ -1,0 +1,48 @@
+.custom-modal-dd-upload {width:700px}
+.dd-upload-area {
+  display:block;
+  background-color:white;
+  color:#666;
+  border:1px dashed #CCC;
+  padding:2em;
+  cursor:default;
+  position:relative;
+  overflow:hidden;
+}
+.dd-upload-area.hover {
+  color:#555;
+  border-color:#AAA;
+  background-color:#FAFAFA;
+}
+.dd-upload-area img {
+  display:block;
+  margin:0 auto;
+}
+.dd-upload-area img + img {margin-top:1em}
+.dd-upload-area-label {
+  display:block;
+  height:200px;
+  line-height:200px;
+  text-align:center;
+}
+.dd-upload-progress {
+  height:.5em;
+  background-color:#CCC;
+  margin:1em 0 0;
+  overflow:hidden;
+  display:none;
+}
+.dd-upload-progress span {
+  display:block;
+  float:left;
+  height:inherit;
+  background-color:#39F;
+  -webkit-transition:width .5s ease-out;
+  -moz-transition:width .5s ease-out;
+  -ms-transition:width .5s ease-out;
+  -o-transition:width .5s ease-out;
+  transition:width .5s ease-out;
+}
+@media screen and (max-width:800px) {
+  .custom-modal-dd-upload {width:80%}
+}

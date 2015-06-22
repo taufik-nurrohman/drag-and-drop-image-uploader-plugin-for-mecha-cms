@@ -1,0 +1,10 @@
+Title: Pengunggah Gambar Seret &amp; Lepas
+Author: Taufik Nurrohman
+URL: http://latitudu.com
+Version: 1.0.0
+
+====
+
+> Pengunggah gambar di dalam editor posting.
+
+Unggah gambar-gambar Anda dengan cepat dan mudah, secara langsung melalui editor posting menggunakan pengunggah AJAX.
