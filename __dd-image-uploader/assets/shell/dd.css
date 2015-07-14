@@ -4,26 +4,52 @@
   background-color:white;
   color:#666;
   border:1px dashed #CCC;
-  padding:2em;
+  padding:2em 2em 1em;
   cursor:default;
   position:relative;
   overflow:hidden;
 }
-.dd-upload-area.hover {
+.dd-upload-area.hover,
+.dd-upload-area:hover {
   color:#555;
   border-color:#AAA;
   background-color:#FAFAFA;
 }
 .dd-upload-area img {
   display:block;
-  margin:0 auto;
+  max-width:250px;
+  margin:0 auto 1em;
 }
-.dd-upload-area img + img {margin-top:1em}
+.dd-upload-area .img-small {
+  float:left;
+  max-width:100px;
+  margin:0 1em 1em 0;
+}
 .dd-upload-area-label {
   display:block;
   height:200px;
   line-height:200px;
   text-align:center;
+}
+.dd-upload-area-label input {
+  display:block;
+  position:absolute;
+  top:0;
+  right:0;
+  margin:0;
+  padding:100%;
+  width:200%;
+  height:200%;
+  font-size:2000%;
+  cursor:pointer;
+  opacity:0;
+}
+.dd-upload-area-label input::-ms-value {display:none}
+.dd-upload-area-label input::-ms-browse {
+  display:block;
+  margin:0;
+  padding:0;
+  cursor:inherit;
 }
 .dd-upload-progress {
   height:.5em;

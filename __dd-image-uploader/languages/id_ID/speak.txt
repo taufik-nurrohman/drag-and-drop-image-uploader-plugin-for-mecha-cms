@@ -2,4 +2,4 @@ plugin_dd_upload:
   0: Unggah
   1: Unggah Sebuah Gambar
   2: Seret sebuah gambar ke area ini&hellip;
-  3: Hanya gambar!
+  3: Berkas yang sedang Anda coba unggah bukan merupakan berkas gambar yang valid.
