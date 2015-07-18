@@ -1,6 +1,6 @@
 (function(w, d, base) {
 
-    if (typeof base.composer === "undefined") return;
+    if (!base.composer) return;
 
     var mte = base.languages.MTE,
         speak = base.languages.plugin_dd_upload,
@@ -113,19 +113,18 @@
 
     // show modal
     function start(e, editor) {
-        editor.modal('dd-upload', function(o, m) {
-            var ch = m.children;
-            ch[0].innerHTML = speak[1];
-            ch[1].innerHTML = "";
-            ch[2].innerHTML = "";
+        editor.modal('dd-upload', function(overlay, modal, header, content, footer) {
+            header.innerHTML = speak[1];
+            content.innerHTML = "";
+            footer.innerHTML = "";
             area = d.createElement('div');
             progress = d.createElement('span');
             area.className = 'dd-upload-area';
             area.innerHTML = label.replace('%s', speak[2]);
             progress.className = 'dd-upload-progress';
             progress.innerHTML = '<span></span>';
-            ch[1].appendChild(area);
-            ch[1].appendChild(progress);
+            content.appendChild(area);
+            content.appendChild(progress);
             var cancel = d.createElement('button');
             cancel.innerHTML = mte.buttons.cancel;
             cancel.onclick = function(e) {
@@ -136,7 +135,7 @@
                     'progress': progress
                 });
             };
-            ch[2].appendChild(cancel);
+            footer.appendChild(cancel);
             area.ondragover = function(e) {
                 this.className = 'dd-upload-area hover';
                 base.fire(hook + 'event_over', {

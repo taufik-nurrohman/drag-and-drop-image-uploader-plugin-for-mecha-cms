@@ -12,11 +12,11 @@ Config::merge('DASHBOARD.languages', array(
 ));
 
 Weapon::add('shell_after', function() {
-    echo Asset::stylesheet('cabinet/plugins/' . basename(__DIR__) . '/assets/shell/dd.css');
+    echo Asset::stylesheet('cabinet/plugins/' . File::B(__DIR__) . '/assets/shell/dd.css');
 });
 
 Weapon::add('SHIPMENT_REGION_BOTTOM', function() {
-    echo Asset::javascript('cabinet/plugins/' . basename(__DIR__) . '/assets/sword/dd.js');
+    echo Asset::javascript('cabinet/plugins/' . File::B(__DIR__) . '/assets/sword/dd.js');
 }, 20);
 
 Route::post(DD_UPLOAD_DESTINATION, function() use($config, $speak) {

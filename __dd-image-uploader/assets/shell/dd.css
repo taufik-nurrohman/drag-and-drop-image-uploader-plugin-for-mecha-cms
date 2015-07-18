@@ -11,9 +11,9 @@
 }
 .dd-upload-area.hover,
 .dd-upload-area:hover {
-  color:#555;
-  border-color:#AAA;
   background-color:#FAFAFA;
+  border-color:#AAA;
+  color:#555;
 }
 .dd-upload-area img {
   display:block;
