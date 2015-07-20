@@ -3,7 +3,7 @@
     if (!base.composer) return;
 
     var mte = base.languages.MTE,
-        speak = base.languages.plugin_dd_upload,
+        speak = mte.plugin_dd_upload,
         ok = false,
         hook = 'on_dd_upload_',
         label = '<span class="dd-upload-area-label">%s<input type="file"></span>',
