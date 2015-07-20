@@ -53,7 +53,7 @@
 }
 .dd-upload-progress {
   height:.5em;
-  background-color:#CCC;
+  background-color:#D9E6F3;
   margin:1em 0 0;
   overflow:hidden;
   display:none;
@@ -62,7 +62,7 @@
   display:block;
   float:left;
   height:inherit;
-  background-color:#39F;
+  background-color:#4EA6EA;
   -webkit-transition:width .5s ease-out;
   -moz-transition:width .5s ease-out;
   -ms-transition:width .5s ease-out;
