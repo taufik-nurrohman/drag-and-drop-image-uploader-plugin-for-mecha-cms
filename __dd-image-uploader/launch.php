@@ -24,7 +24,7 @@ Route::post(DD_UPLOAD_DESTINATION, function() use($config, $speak) {
     HTTP::mime('application/json', $config->charset);
     $results = array();
     foreach($_FILES as $file) {
-        $path = DD_UPLOAD_FOLDER . DS . $file['name'];
+        $path = DD_UPLOAD_FOLDER . DS . Text::parse($file['name'], '->safe_file_name');
         $results[] = File::url($path);
         File::upload($file, File::path(Request::post('dd_path', DD_UPLOAD_FOLDER)));
     }
