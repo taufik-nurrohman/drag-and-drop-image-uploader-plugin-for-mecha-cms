@@ -6,7 +6,7 @@
         speak = mte.plugin_dd_upload,
         ok = false,
         hook = 'on_dd_upload_',
-        label = '<span class="dd-upload-area-label">%s<input type="file"></span>',
+        label = '<label class="dd-upload-area-label">%s<input type="file"></label>',
         btn_name = 'cloud-upload plugin-dd-image-uploader',
         accept = {
             'image/bmp': true,
