@@ -13,7 +13,7 @@ Config::merge('DASHBOARD.languages.MTE', array(
 
 Weapon::add('shell_after', function() {
     echo Asset::stylesheet('cabinet/plugins/' . File::B(__DIR__) . '/assets/shell/button.css');
-});
+}, 20);
 
 Weapon::add('SHIPMENT_REGION_BOTTOM', function() {
     echo Asset::javascript('cabinet/plugins/' . File::B(__DIR__) . '/assets/sword/button.js');
