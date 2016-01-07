@@ -73,7 +73,7 @@
                         name = base.task.file.B(url),
                         plain = '![' + name + '](' + url + ')',
                         html = '<img alt="' + name + '" src="' + url + '"' + ES;
-                    output.push(base.is_html_parser_enabled ? plain : html);
+                    output.push(base.html_parser.active !== 'Markdown' ? html : plain);
                 }
                 // insert!
                 editor.tidy('\n\n', function() {

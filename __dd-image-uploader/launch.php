@@ -3,20 +3,19 @@
 // Begin variable(s)
 define('DD_UPLOAD_DESTINATION', $config->url . '/' . $config->manager->slug . '/plugin/' . File::B(__DIR__) . '/upload');
 define('DD_UPLOAD_TOKEN', Guardian::token());
-define('DD_UPLOAD_FOLDER', ASSET);
+define('DD_UPLOAD_FOLDER', ASSET . DS . 'object');
 // End variable(s)
 
-$speak = Config::speak();
 Config::merge('DASHBOARD.languages.MTE', array(
     'plugin_dd_upload' => Mecha::A($speak->plugin_dd_upload)
 ));
 
 Weapon::add('shell_after', function() {
-    echo Asset::stylesheet('cabinet/plugins/' . File::B(__DIR__) . '/assets/shell/button.css');
+    echo Asset::stylesheet(__DIR__ . DS . 'assets' . DS . 'shell' . DS . 'button.css');
 }, 20);
 
 Weapon::add('SHIPMENT_REGION_BOTTOM', function() {
-    echo Asset::javascript('cabinet/plugins/' . File::B(__DIR__) . '/assets/sword/button.js');
+    echo Asset::javascript(__DIR__ . DS . 'assets' . DS . 'sword' . DS . 'button.js');
 }, 20);
 
 Route::post(DD_UPLOAD_DESTINATION, function() use($config, $speak) {
