@@ -1,5 +1,7 @@
 plugin_dd_upload:
-  0: Upload
+  0:
+    0: Upload
+    1: ⌘+⇧+G
   1: Upload an Image
-  2: Drop an image here&hellip;
+  2: Drop an image here…
   3: The file you are trying to upload is not a valid image file.

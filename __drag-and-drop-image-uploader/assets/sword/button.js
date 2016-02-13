@@ -5,6 +5,7 @@
     var mte = base.languages.MTE,
         speak = mte.plugin_dd_upload,
         ok = false,
+        timer = null,
         hook = 'on_dd_upload_',
         label = '<label class="dd-upload-area-label">%s<input type="file"></label>',
         btn_name = 'cloud-upload plugin-dd-image-uploader',
@@ -51,7 +52,7 @@
             }
         }
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', DD_UPLOAD_DESTINATION);
+        xhr.open('POST', DD_UPLOAD_WORKER);
         xhr.onload = function() {
             progress.title = '100%';
             p.style.width = '100%';
@@ -65,26 +66,20 @@
             }
         };
         xhr.onreadystatechange = function() {
-            if(this.readyState === 4) {
+            if(this.readyState === 4) {console.log(this.responseText);
                 var response = JSON.parse(this.responseText),
                     output = [];
                 for (var i = 0, len = response.length; i < len; ++i) {
                     var url = response[i],
-                        name = base.task.file.B(url),
-                        plain = '![' + name + '](' + url + ')',
-                        html = '<img alt="' + name + '" src="' + url + '"' + ES;
-                    output.push(base.html_parser.active !== 'Markdown' ? html : plain);
+                        name = base.task.file.B(url);
+                    output.push(DD_UPLOAD_OUTPUT.replace(/%1\$s/g, url).replace(/%2\$s/g, name));
                 }
                 // insert!
                 editor.tidy('\n\n', function() {
                     editor.insert(output.join('\n\n'), function() {
                         var s = editor.selection();
-                        if (!s.after.length) {
-                            editor.area.value += '\n\n';
-                        }
-                        editor.select(s.end + 2, function() {
-                            editor.updateHistory();
-                        });
+                        if (!s.after.length) editor.area.value += '\n\n';
+                        editor.select(s.end + 2, true);
                     });
                 }, '\n\n', true);
                 base.fire(hook + 'success', {
@@ -96,13 +91,13 @@
             }
         };
         if (ok) {
-            w.setTimeout(function() {
+            timer = w.setTimeout(function() {
                 xhr.send(data);
                 ok = false;
             }, 3000);
         } else {
             base.composer.alert(speak[1], speak[3], function() {
-                base.composer.grip.config.buttons[btn_name].click(false, base.composer);
+                base.composer.grip.config.buttons[btn_name].click(null, base.composer);
             });
             base.fire(hook + 'error', {
                 'area': area,
@@ -125,16 +120,24 @@
             progress.innerHTML = '<span></span>';
             content.appendChild(area);
             content.appendChild(progress);
-            var cancel = d.createElement('button');
-            cancel.innerHTML = mte.buttons.cancel;
+            var cancel = d.createElement('button'),
+                url = d.createElement('button');
+            cancel.innerHTML = mte.actions.cancel;
+            url.innerHTML = '<i class="fa fa-image"></i>';
             cancel.onclick = function(e) {
-                editor.close(true);
                 base.fire(hook + 'hide', {
                     'event': e,
                     'area': area,
                     'progress': progress
                 });
+                w.clearTimeout(timer);
+                return ok = false, editor.exit(true), false;
             };
+            url.onclick = function(e) {
+                w.clearTimeout(timer);
+                return ok = false, base.composer.grip.config.buttons.image.click(), false;
+            };
+            footer.appendChild(url);
             footer.appendChild(cancel);
             area.ondragover = function(e) {
                 this.className = 'dd-upload-area hover';
@@ -187,9 +190,9 @@
         click: start
     });
 
-    // add keyboard shortcut
-    base.composer.shortcut('CTRL+SHIFT+71', function() {
-        return base.composer.grip.config.buttons[btn_name].click(false, base.composer), false;
+    // `Ctrl + Shift + G` for "upload"
+    base.composer.shortcut('ctrl+shift+g', function() {
+        return base.composer.grip.config.buttons[btn_name].click(null, base.composer), false;
     });
 
 })(window, document, DASHBOARD);
